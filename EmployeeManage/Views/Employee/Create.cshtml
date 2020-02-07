@@ -1,0 +1,73 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h1>Create</h1>
+@*@using (Html.BeginForm())
+    {*@
+@*Name @Html.TextBox("TextBox1","Enter name")<br /><br />
+    Address: @Html.TextArea("textarea","Address")<br /><br />
+    Password: @Html.Password("password")<br /><br />
+    Program @Html.ListBox("l1",new MultiSelectList(new[] { "ASP","ASP.net Core"}))*@
+
+
+@*@Html.Label("Name")
+    @Html.TextBoxFor(m => m.Name, "Enter name")
+    <br />
+    <br />
+    Address: @Html.TextAreaFor(m=>m.Dept)
+    <br />
+    <br />
+    @Html.LabelFor(m=>m.Email)
+     @Html.PasswordFor(m=>m.Id)
+    <br />
+    <br />*@
+
+
+@*@Html.Display("Id")
+    <br />
+    @Html.DisplayFor(m => m.Id)
+    <br />
+    @Html.Display("Name")
+    <br />
+    @Html.DisplayFor(m => m.Name)
+    <br />
+    @Html.Display("Email")
+    <br />
+    @Html.EditorFor(m => m.Email)
+    <br />
+    @Html.Display("Dept")
+    <br />
+    @Html.EditorFor(m => m.Dept)
+    <br />
+    <input class="btn btn-primary" type="submit" value="submit" action="Employee/Create/1"/>
+    }*@
+
+<form asp-controller="Employee" asp-action="Create" method="post">
+    <div class="form-row">
+        <label asp-for="Name" class="col-form-label">Name</label>
+        <input asp-for="Name" class="col-lg-6" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-row">
+        <label asp-for="Email" class="col-form-label">Email</label>
+        <input asp-for="Email" class="col-lg-6" />
+        <span asp-validation-for="Email"class="text-danger"></span>
+    </div>
+    <div class="form-row">
+        <label asp-for="Dept" class="col-form-label">Dept</label>
+        <select asp-for="Dept" class="col-lg-6" asp-items="Html.GetEnumSelectList<Dept>()"></select>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-row">
+        @*<input type="submit" value="Create Employee" />*@
+        <button type="submit" value="Create">Create</button>
+    </div>
+    <div>
+        <partial name="/Views/Employee/_mypartial.cshtml"/>
+
+    </div>
+</form>
